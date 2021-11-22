@@ -18,3 +18,11 @@ class Review(models.Model):
     def __str__(self):
         return self.product.title
 
+
+class Like(models.Model):
+    user = models.ForeignKey(User, related_name='like', on_delete=models.CASCADE)
+    review = models.ForeignKey(Review, related_name='like', on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.like

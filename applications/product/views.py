@@ -3,7 +3,7 @@ from rest_framework import generics, filters
 from rest_framework.pagination import PageNumberPagination
 from django_filters import rest_framework
 from applications.product.models import Product
-from applications.product.serializers import ProductSerializer
+from applications.product.serializers import ProductSerializer, ProductDetailSerializer
 
 
 class ProductPriceFilter(rest_framework.FilterSet):
@@ -29,3 +29,8 @@ class ProductListView(generics.ListAPIView):
 
     def get_serializer_context(self):
         return {'request': self.request}
+
+
+class ProductDetailView(generics.RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductDetailSerializer
